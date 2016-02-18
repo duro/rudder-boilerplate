@@ -11,11 +11,11 @@ db:
   ports:
     - '5432:5432'
 api:
-  build: ./rudder-api/
+  build: ./api/
   environment:
     POSTGRES_PASSWORD: notsosecretpassword
   volumes:
-    - /projects/rudder/rudder-api:/opt/app
+    - /projects/rudder-boilerplate/api:/opt/app
   ports:
     - "8011:8011"
     - "8778:8778"
@@ -23,9 +23,9 @@ api:
   links:
     - db:postgres
 iso-frontend:
-  build: ./rudder-isomorphic/
+  build: ./frontend/
   volumes:
-    - /projects/rudder/rudder-isomorphic:/opt/app
+    - /projects/rudder-boilerplate/frontend:/opt/app
   ports:
     - "3000:3000"
     - "8080:8080"
