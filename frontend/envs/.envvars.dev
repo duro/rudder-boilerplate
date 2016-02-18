@@ -1,0 +1,12 @@
+## This file will be included by our bin/dev.sh
+## file and can be used to overload or add an ENV
+## vars before our app starts
+
+export DEBUGGER=true        # Options: [true, false]
+export DEBUG_BRK=false      # Options: [true, false]
+export NODE_ENV=production  # Options: [local, dev, staging, production]
+export DOCKER_ENV=dev
+export HOST=docker.local
+export PORT=8080
+export APIPORT=8011
+export APIHOST=rudder-api

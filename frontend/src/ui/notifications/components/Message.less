@@ -1,0 +1,42 @@
+@import '../../../variables.less';
+
+.wrapper {
+  padding: 30px;
+  background-color: fade(@lightGrey, 75%);
+  width: 300px;
+  margin-bottom: 3px;
+
+  &.notice {
+    background-color: fade(@notificationsNotice, 75%);
+  }
+
+  &.warning {
+    background-color: fade(@notificationsWarning, 75%);
+  }
+
+  &.success {
+    background-color: fade(@notificationsSuccess, 75%);
+  }
+
+  &.error {
+    background-color: fade(@notificationsError, 75%);
+  }
+
+  &:global(.message-enter) {
+    opacity: 0.01;
+  }
+
+  &:global(.message-enter.message-enter-active) {
+    opacity: 1;
+    transition: opacity 800ms ease-in;
+  }
+
+  &:global(.message-leave) {
+    opacity: 1;
+  }
+
+  &:global(.message-leave.message-leave-active) {
+    opacity: 0.01;
+    transition: opacity 500ms ease-in;
+  }
+}

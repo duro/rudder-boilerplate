@@ -1,0 +1,9 @@
+frontend:
+  build: .
+  volumes:
+    - /projects/rudder-frontend:/opt/app
+  ports:
+    - "3000:3000"
+    - "8080:8080"
+    - "5858:5858"
+    - "3001:3001"

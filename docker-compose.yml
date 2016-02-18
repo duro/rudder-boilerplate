@@ -1,0 +1,35 @@
+db_data:
+  image: busybox
+  volumes:
+    - /var/lib/postgresql/data
+db:
+  image: postgres:9.4.4
+  environment:
+    POSTGRES_PASSWORD: notsosecretpassword
+  volumes_from:
+    - db_data
+  ports:
+    - '5432:5432'
+api:
+  build: ./rudder-api/
+  environment:
+    POSTGRES_PASSWORD: notsosecretpassword
+  volumes:
+    - /projects/rudder/rudder-api:/opt/app
+  ports:
+    - "8011:8011"
+    - "8778:8778"
+    - "5995:5995"
+  links:
+    - db:postgres
+iso-frontend:
+  build: ./rudder-isomorphic/
+  volumes:
+    - /projects/rudder/rudder-isomorphic:/opt/app
+  ports:
+    - "3000:3000"
+    - "8080:8080"
+    - "5858:5858"
+    - "3001:3001"
+  links:
+    - api:rudder-api
