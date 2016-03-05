@@ -17,6 +17,16 @@ function run {
   return $status
 }
 
+# Wait till Postgres is available before continuing
+while true; do
+    psql -c "select pg_postmaster_start_time()" >/dev/null 2>&1
+    if [ $? -eq 0 ]; then
+        break
+    fi
+    echo "Waiting to connect to Postgres..."
+    sleep 1
+done
+
 if [ "$NODE_ENV" == "test" ]; then
   if psql -lqt | cut -d \| -f 1 | grep -w ${RUDDER_DB_NAME}; then
     echo "${RUDDER_DB_NAME} database already exists...moving on"
