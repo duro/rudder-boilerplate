@@ -49,7 +49,7 @@ export function loginUser(email, password) {
       actionTypes.USER_LOGIN_COMPLETE,
       actionTypes.USER_LOGIN_ERROR
     ],
-    promise: (client) => client.post('/api/auth', {
+    promise: (client) => client.post('/auth', {
       data: {
         email,
         password
@@ -68,7 +68,7 @@ export function fetchUser() {
         actionTypes.USER_FETCH_ERROR
       ],
       promise: (client) => {
-        return client.get(`/api/user/me`, {
+        return client.get(`/user/me`, {
           headers: {
             'Accept': 'application/json',
             'Authorization': token
