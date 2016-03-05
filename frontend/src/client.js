@@ -41,7 +41,7 @@ const store = createStore(history, client, cookie, window.__data);
 
 const component = (
   <Router render={(props) =>
-        <ReduxAsyncConnect {...props} helpers={{client}} />
+        <ReduxAsyncConnect {...props} helpers={{client}} filter={item => !item.deferred} />
       } history={history}>
     {getRoutes(store)}
   </Router>
