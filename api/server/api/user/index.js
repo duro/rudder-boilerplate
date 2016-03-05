@@ -6,7 +6,7 @@ import Sequelize from 'sequelize';
 exports.register = (server, options, next) => {
   server.route({
     method: 'POST',
-    path: '/api/user',
+    path: '/user',
     config: {
       tags: ['api', 'user'],
       description: 'Creates a new user',
@@ -53,7 +53,7 @@ exports.register = (server, options, next) => {
 
   server.route({
     method: 'GET',
-    path: '/api/user/me',
+    path: '/user/me',
     config: {
       tags: ['api', 'user'],
       description: 'Gets a users info',
@@ -80,7 +80,7 @@ exports.register = (server, options, next) => {
 
   server.route({
     method: 'PUT',
-    path: '/api/user/{id}',
+    path: '/user/{id}',
     config: {
       tags: ['api', 'user'],
       description: 'Updates a user',

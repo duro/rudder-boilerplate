@@ -15,7 +15,7 @@ exports.register = (server, options, next) => {
 
   server.route({
     method: 'POST',
-    path: '/api/auth',
+    path: '/auth',
     config: {
       tags: ['api', 'auth'],
       description: 'Authenticate a user',
@@ -39,7 +39,6 @@ exports.register = (server, options, next) => {
       handler(request, reply) {
         const { User } = request.models;
         let _user;
-        console.log('WHAMMY');
         User.findOne({ where: {email: request.payload.email} })
           .then(foundUser => {
             if (!foundUser) throw Boom.unauthorized('invalid login credentials');
