@@ -32,7 +32,7 @@ export function loadList() {
         actionTypes.ASYNC_LIST_LOAD_SUCCESS,
         actionTypes.ASYNC_LIST_LOAD_ERROR
       ],
-      promise: (client) => client.get('/api/test')
+      promise: (client) => client.get('/test')
     });
   };
 }
