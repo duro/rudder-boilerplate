@@ -7,7 +7,7 @@ export default class MainNavItem extends Component {
   static propTypes = {
     to: PropTypes.string.isRequired,
     icon: PropTypes.string,
-    children: PropTypes.object
+    children: PropTypes.string
   }
 
   render() {
