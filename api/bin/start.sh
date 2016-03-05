@@ -54,6 +54,12 @@ fi
 if [ "$DOCKER_ENV" == "local" ] || [ "$DOCKER_ENV" == "dev" ]; then
   echo "Run migrations..."
   sequelize db:migrate
+
+  if [ $? -eq 0 ]; then
+    echo "Migrations successful"
+  else
+    exit $?
+  fi
 fi
 
 if [ "$DEBUGGER" = true ]; then
