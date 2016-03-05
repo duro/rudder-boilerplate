@@ -52,6 +52,10 @@ export default class Login extends Component {
       );
     }
 
+    if (this.props.auth.get('isLoggedIn')) {
+      return null;
+    }
+
     return (
       <div className={styles.loginContainer}>
         <div className={styles.loginModule}>
