@@ -3,8 +3,6 @@ require("babel-register");
 var AppConfig = require('./server/config').default;
 var _ = require('lodash');
 
-console.log(AppConfig);
-
 console.log('NODE_ENV: ' + process.env.NODE_ENV);
 
 var connectionTemplate = _.template("<%= dialect %>://<%= user %>:<%= pass %>@<%= host %>:<%= port %>/<%= name %>");
