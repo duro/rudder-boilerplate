@@ -12,6 +12,7 @@ import httpProxy from 'http-proxy';
 import path from 'path';
 import createStore from './redux/create';
 import ApiClient from './helpers/ApiClient';
+import Stopwatch from 'statman-stopwatch';
 import Html from './helpers/Html';
 import PrettyError from 'pretty-error';
 import CookieDough from 'cookie-dough';
@@ -42,6 +43,7 @@ app.use(Express.static(path.join(__dirname, '..', 'static')));
 // Proxy to API server
 app.use('/api', (req, res) => {
   console.log(`API CALL: ${req.method} ${targetUrl}${req.url}`);
+  req.stopwatch = new Stopwatch(true);
   proxy.web(req, res, {target: targetUrl});
 });
 
@@ -52,6 +54,12 @@ app.use('/ws', (req, res) => {
 server.on('upgrade', (req, socket, head) => {
   proxy.ws(req, socket, head);
 });
+
+proxy.on('proxyRes', (proxyRes, req, res) => {
+  const { stopwatch } = req;
+  stopwatch.stop();
+  console.log(`PROXIED API CALL: ${req.method} ${targetUrl}${req.url} took ${stopwatch.read()}ms to complete`);
+})
 
 // added the error handling to avoid https://github.com/nodejitsu/node-http-proxy/issues/527
 proxy.on('error', (error, req, res) => {
@@ -97,7 +105,7 @@ app.use((req, res) => {
       res.status(500);
       hydrateOnClient();
     } else if (renderProps) {
-      loadOnServer(renderProps, store, {client}).then(() => {
+      loadOnServer({...renderProps, store, helpers: {client}}).then(() => {
         const component = (
           <Provider store={store} key="provider">
             <ReduxAsyncConnect {...renderProps} />
