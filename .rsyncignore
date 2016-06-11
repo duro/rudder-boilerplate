@@ -2,3 +2,6 @@
 .DS_Store
 .vagrant
 node_modules
+frontend/webpack-assets.json
+frontend/webpack-stats.json
+frontend/npm-debug.log
