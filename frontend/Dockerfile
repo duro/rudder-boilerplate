@@ -1,4 +1,4 @@
-FROM node:5.6.0
+FROM node:5.11.1
 
 ## set some ENV vars
 ENV HOME /root
