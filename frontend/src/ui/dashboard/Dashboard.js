@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { addMessage } from 'redux/modules/notifications';
 import { Button, ButtonToolbar } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import Helmet from 'react-helmet';
 
 @connect(null, { addMessage } )
 export default class Dashboard extends Component {
@@ -13,6 +14,7 @@ export default class Dashboard extends Component {
   render() {
     return (
       <div>
+        <Helmet title="Dashboard" />
         <h1>Dashboard</h1>
         <h2>Test the notification system</h2>
         <ButtonToolbar>

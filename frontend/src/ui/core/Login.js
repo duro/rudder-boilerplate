@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { loginUser, redirectLoggedInUser } from 'redux/modules/auth';
 import LoginForm from './forms/LoginForm';
 import styles from './Login.less';
+import Helmet from 'react-helmet';
 
 @connect(
   state => ({auth: state.auth}),
@@ -58,6 +59,7 @@ export default class Login extends Component {
 
     return (
       <div className={styles.loginContainer}>
+        <Helmet title="Login" />
         <div className={styles.loginModule}>
           <h1>Login</h1>
           {errors}
