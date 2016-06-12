@@ -9,9 +9,9 @@ import createStore from './redux/create';
 import ApiClient from './helpers/ApiClient';
 // import io from 'socket.io-client';
 import {Provider} from 'react-redux';
-import { Router, browserHistory } from 'react-router';
+import { Router, browserHistory, applyRouterMiddleware } from 'react-router';
 import { ReduxAsyncConnect } from 'redux-connect';
-import withScroll from 'scroll-behavior';
+import useScroll from 'react-router-scroll';
 import cookieDough from 'cookie-dough';
 
 import getRoutes from './routes';
@@ -19,10 +19,9 @@ import getRoutes from './routes';
 require('./global.less');
 
 const client = new ApiClient();
-const history = withScroll(browserHistory);
 const dest = document.getElementById('root');
 const cookie = cookieDough();
-const store = createStore(history, client, cookie, window.__data);
+const store = createStore(browserHistory, client, cookie, window.__data);
 
 // Uncomment below to turn on Web Socket connection
 // function initSocket() {
@@ -40,10 +39,17 @@ const store = createStore(history, client, cookie, window.__data);
 // global.socket = initSocket();
 
 const component = (
-  <Router render={(props) =>
-        <ReduxAsyncConnect {...props} helpers={{client}} filter={item => !item.deferred} />
-      } history={history}>
-    {getRoutes(store)}
+  <Router
+    history={browserHistory}
+    render={(props) =>
+      <ReduxAsyncConnect
+        {...props}
+        helpers={{client}}
+        filter={item => !item.deferred}
+        render={applyRouterMiddleware(useScroll())}
+      />
+    }>
+      { getRoutes(store) }
   </Router>
 );
 
