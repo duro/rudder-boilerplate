@@ -66,7 +66,7 @@ docker-machine ip default
 Put the following entry in your `/etc/hosts` file:
 
 ```
-<machine_ip> docker.local
+<machine_ip> docker.internal
 ```
 
 ### Starting Application

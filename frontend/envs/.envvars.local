@@ -5,7 +5,7 @@
 export DEBUGGER=true        # Options: [true, false]
 export NODE_ENV=development # Options: [local, development, staging, production]
 export DOCKER_ENV=local
-export HOST=docker.local
+export HOST=docker.internal
 export PORT=3000
 export APIPORT=8011
 export APIHOST=rudder-api

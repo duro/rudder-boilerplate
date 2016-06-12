@@ -71,7 +71,7 @@ docker-machine ip default
 Put the following entry in your `/etc/hosts` file:
 
 ```
-<machine_ip> docker.local
+<machine_ip> docker.internal
 ```
 
 ### Link project environment vars
@@ -102,7 +102,7 @@ make up
 
 You should now be able to access the documentation for the API to test that your env is running:
 
-http://docker.local:8007/documentation
+http://docker.internal:8007/documentation
 
 ## Local Development Tasks
 
@@ -140,7 +140,7 @@ export DEBUGGER=true
 
 Once the app has been started with the Debugger turned on, you can connect to the debugger at the following URL:
 
-http://docker.local:8787/?ws=docker.local:8787&port=5959
+http://docker.internal:8787/?ws=docker.internal:8787&port=5959
 
 ## Database Migrations
 

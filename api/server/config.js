@@ -32,7 +32,7 @@ const config = {
 
   api: {
     swagger: {
-      host: 'docker.local:8011',
+      host: 'docker.internal:8011',
       info: {
         title: 'Rudder API',
         description: 'The official API for the Rudder platform.',
