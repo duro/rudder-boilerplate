@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import { reduxForm } from 'redux-form';
 import validate from 'validate.js';
-import {ButtonInput} from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import RFBSInput from '../components/RFBSInput';
 
 const constraints = {
@@ -31,10 +31,7 @@ export default class LoginForm extends Component {
 
   render() {
     const {
-      fields: {
-        email,
-        password
-      },
+      fields: { email, password },
       handleSubmit,
       invalid
     } = this.props;
@@ -44,7 +41,13 @@ export default class LoginForm extends Component {
         <form>
           <RFBSInput type="text" label="Email Address" field={email} />
           <RFBSInput type="password" label="Password" field={password} />
-          <ButtonInput type="submit" bsStyle="primary" onClick={handleSubmit} disabled={invalid} />
+          <Button
+            type="submit"
+            bsStyle="primary"
+            onClick={handleSubmit}
+            disabled={invalid}>
+              Submit
+          </Button>
         </form>
       </div>
     );

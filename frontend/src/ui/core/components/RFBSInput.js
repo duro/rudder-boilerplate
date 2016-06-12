@@ -1,32 +1,34 @@
-import React, {Component, PropTypes} from 'react';
-import {Input} from 'react-bootstrap';
+import React, { Component, PropTypes } from 'react';
+import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 import FormError from './FormError';
 
 export default class RFBSInput extends Component {
 
   static propTypes = {
     field: PropTypes.object.isRequired,
-    ...Input.propTypes
+    type: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired
   }
 
   render() {
-    const {field} = this.props;
-    const options = {};
+    const { field, label } = this.props;
+    const formGroupOptions = {};
 
     if (field.touched) {
       if (field.error) {
-        options.bsStyle = 'error';
+        formGroupOptions.validationState = 'error';
       } else {
-        options.bsStyle = 'success';
+        formGroupOptions.validationState = 'success';
       }
-      options.hasFeedback = true;
     }
 
     return (
-      <div>
-        <Input {...this.props} {...field} {...options} />
+      <FormGroup controlId={field.name} {...formGroupOptions}>
+        <ControlLabel>{ label }</ControlLabel>
+        <FormControl {...this.props} {...field} />
+        <FormControl.Feedback />
         <FormError field={field} />
-      </div>
+      </FormGroup>
     );
   }
 }
