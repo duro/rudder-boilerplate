@@ -2,7 +2,7 @@ exports.register = (server, options, next) => {
 
   server.route({
     method: 'GET',
-    path: '/api/test',
+    path: '/test',
     config: {
       tags: ['test'],
       description: 'This is a test',
