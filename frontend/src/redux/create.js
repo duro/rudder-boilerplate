@@ -9,7 +9,11 @@ export default function createStore(history, client, cookie, data) {
   // Sync dispatched route actions to the history
   const reduxRouterMiddleware = syncHistory(history);
 
-  const middleware = [thunk, createMiddleware(client), reduxRouterMiddleware];
+  const middleware = [
+    thunk,
+    createMiddleware(client),
+    reduxRouterMiddleware
+  ];
 
   let finalCreateStore;
   if (__DEVELOPMENT__ && __CLIENT__ && __DEVTOOLS__) {
