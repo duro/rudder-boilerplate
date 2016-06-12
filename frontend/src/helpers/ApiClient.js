@@ -19,7 +19,7 @@ function formatUrl(path) {
  *
  * Remove it at your own risk.
  */
-class _ApiClient {
+export default class ApiClient {
   constructor(req) {
     methods.forEach((method) =>
       this[method] = (path, { params, data, headers } = {}) => new Promise((resolve, reject) => {
@@ -44,8 +44,6 @@ class _ApiClient {
         request.end((err, { body } = {}) => err ? reject(body || err) : resolve(body));
       }));
   }
+
+  empty() {} // This is needed to fix a bug in Babel/V8
 }
-
-const ApiClient = _ApiClient;
-
-export default ApiClient;
