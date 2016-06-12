@@ -141,7 +141,7 @@
     "superagent": "^2.0.0",
     "url-loader": "^0.5.7",
     "validate.js": "^0.10.0",
-    "warning": "^2.1.0",
+    "warning": "^3.0.0",
     "webpack-isomorphic-tools": "^2.2.18"
   },
   "devDependencies": {
