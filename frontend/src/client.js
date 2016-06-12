@@ -11,7 +11,7 @@ import ApiClient from './helpers/ApiClient';
 import {Provider} from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import { ReduxAsyncConnect } from 'redux-connect';
-import useScroll from 'scroll-behavior/lib/useStandardScroll';
+import withScroll from 'scroll-behavior';
 import cookieDough from 'cookie-dough';
 
 import getRoutes from './routes';
@@ -19,7 +19,7 @@ import getRoutes from './routes';
 require('./global.less');
 
 const client = new ApiClient();
-const history = useScroll(() => browserHistory)();
+const history = withScroll(browserHistory);
 const dest = document.getElementById('root');
 const cookie = cookieDough();
 const store = createStore(history, client, cookie, window.__data);
