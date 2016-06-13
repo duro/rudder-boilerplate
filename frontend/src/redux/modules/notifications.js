@@ -5,7 +5,7 @@ import shortid from 'shortid';
  * Private: Initial State
  */
 
-const initialState = new Immutable.OrderedMap();
+const initialState = Immutable.OrderedMap();
 
 /**
  * Public: Action Types

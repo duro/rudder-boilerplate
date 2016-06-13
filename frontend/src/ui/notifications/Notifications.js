@@ -34,7 +34,7 @@ export default class Notifications extends Component {
   renderMessages() {
     const messages = [];
     if (this.props.notifications.size > 0) {
-      this.props.notifications.forEach((message, id) => {
+      this.props.notifications.reverse().forEach((message, id) => {
         messages.push(
           <Message
             key={id}

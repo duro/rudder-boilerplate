@@ -2,7 +2,7 @@ import { createStore as _createStore, applyMiddleware, compose } from 'redux';
 import createMiddleware from './middleware/clientMiddleware';
 import thunk from 'redux-thunk';
 import Immutable from 'immutable';
-import createReducers, { isImmutable } from './modules/reducer';
+import createReducers, { isImmutable, shouldIgnore } from './modules/reducer';
 import { routerMiddleware } from 'react-router-redux';
 
 export default function createStore(history, client, cookie, data) {
@@ -29,7 +29,9 @@ export default function createStore(history, client, cookie, data) {
   // it is in the exlusion list
   if (data) {
     Object.keys(data).forEach(key => {
-      if (isImmutable(key)) {
+      if (shouldIgnore(key)) {
+        Object.assign(data, { [key]: undefined });
+      } else if (isImmutable(key)) {
         Object.assign(data, { [key]: Immutable.fromJS(data[key]) });
       }
     });

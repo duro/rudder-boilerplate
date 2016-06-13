@@ -28,6 +28,10 @@ rules:
     - 2
     - SwitchCase: 1
   no-console: off
+  no-debugger: off
+  no-restricted-syntax:
+    - off
+    - DebuggerStatement
   no-alert: off
   new-cap: off
 
