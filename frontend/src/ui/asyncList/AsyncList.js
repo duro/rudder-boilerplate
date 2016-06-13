@@ -4,19 +4,14 @@ import { asyncConnect } from 'redux-connect';
 
 @asyncConnect(
   [{
-    key: 'listItems',
-    promise: store => {
-      const { dispatch, getState } = store;
-      const globalState = getState();
-      if (!isLoaded(globalState)) {
-        return dispatch(loadList());
-      }
-
-      return globalState.asyncList.get('listItems');
+    promise: (props) => {
+      const { store: { getState, dispatch } } = props;
+      return (!isLoaded(getState())) ? dispatch(loadList()) : undefined;
     }
   }],
-  null,
-  { loadList, isLoaded }
+  state => ({
+    listItems: state.asyncList.get('listItems')
+  })
 )
 export default class AsyncList extends Component {
 
