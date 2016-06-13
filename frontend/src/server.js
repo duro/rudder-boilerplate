@@ -21,6 +21,7 @@ import http from 'http';
 
 import { match } from 'react-router';
 import { ReduxAsyncConnect, loadOnServer } from 'redux-connect';
+import { syncHistoryWithStore } from 'react-router-redux';
 import createHistory from 'react-router/lib/createMemoryHistory';
 import {Provider} from 'react-redux';
 import getRoutes from './routes';
@@ -83,9 +84,9 @@ app.use((req, res) => {
   }
   const client = new ApiClient(req);
   const cookie = new CookieDough(req);
-  const history = createHistory(req.originalUrl);
-
-  const store = createStore(history, client, cookie);
+  const memoryHistroy = createHistory(req.originalUrl);
+  const store = createStore(memoryHistroy, client, cookie);
+  const history = syncHistoryWithStore(memoryHistroy, store);
 
   function hydrateOnClient() {
     res.send('<!doctype html>\n' +

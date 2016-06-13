@@ -10,6 +10,7 @@ import ApiClient from './helpers/ApiClient';
 // import io from 'socket.io-client';
 import {Provider} from 'react-redux';
 import { Router, browserHistory, applyRouterMiddleware } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
 import { ReduxAsyncConnect } from 'redux-connect';
 import useScroll from 'react-router-scroll';
 import cookieDough from 'cookie-dough';
@@ -22,6 +23,7 @@ const client = new ApiClient();
 const dest = document.getElementById('root');
 const cookie = cookieDough();
 const store = createStore(browserHistory, client, cookie, window.__data);
+const history = syncHistoryWithStore(browserHistory, store);
 
 // Uncomment below to turn on Web Socket connection
 // function initSocket() {
@@ -40,7 +42,7 @@ const store = createStore(browserHistory, client, cookie, window.__data);
 
 const component = (
   <Router
-    history={browserHistory}
+    history={history}
     render={(props) =>
       <ReduxAsyncConnect
         {...props}

@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { routeReducer } from 'react-router-redux';
+import { routerReducer } from 'react-router-redux';
 import {reducer as reduxAsyncConnect} from 'redux-connect';
 import {reducer as form} from 'redux-form';
 import authReducer from './auth';
@@ -15,7 +15,7 @@ const notImmutable = [
 ];
 
 export default (cookie) => combineReducers({
-  routing: routeReducer,
+  routing: routerReducer,
   form,
   reduxAsyncConnect,
   auth: authReducer(cookie),

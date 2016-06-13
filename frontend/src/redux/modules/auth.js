@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import { routeActions } from 'react-router-redux';
+import { replace } from 'react-router-redux';
 
 /**
  * Private: Initial State
@@ -95,7 +95,7 @@ export function forceLogin() {
       type: actionTypes.USER_FORCE_LOGIN,
     });
 
-    return dispatch(routeActions.replace({ pathname: '/' }));
+    return dispatch(replace({ pathname: '/' }));
   };
 }
 
@@ -107,7 +107,7 @@ export function forceLoginWithRedirect(pathname, query) {
       query
     });
 
-    return dispatch(routeActions.replace({ pathname: '/' }));
+    return dispatch(replace({ pathname: '/' }));
   };
 }
 
@@ -121,7 +121,7 @@ export function redirectLoggedInUser() {
       });
 
       return dispatch(
-        routeActions.replace({
+        replace({
           pathname: redirect.get('pathname'),
           query: redirect.get('query').toJS()
         })
@@ -129,7 +129,7 @@ export function redirectLoggedInUser() {
     }
 
     return dispatch(
-      routeActions.replace({
+      replace({
         pathname: '/dashboard'
       })
     );
