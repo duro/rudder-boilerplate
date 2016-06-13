@@ -1,5 +1,8 @@
 # Rudder Boilerplate
 
+API: [![Dependency Status](https://www.versioneye.com/user/projects/575b1d2a7757a00034dc5203/badge.svg?style=flat)](https://www.versioneye.com/user/projects/575b1d2a7757a00034dc5203)
+Front-end: [![Dependency Status](https://www.versioneye.com/user/projects/575b1d2f7757a00041b3b673/badge.svg?style=flat)](https://www.versioneye.com/user/projects/575b1d2f7757a00041b3b673)
+
 This boilerplate is a starting point for a micro service oriented front-end and back-end application that is pure JavaScript. The front-end is a ~~Isomorphic~~ **Universal** React UI that uses Redux as a State layer. The core back-end is a Hapi API server, using Sequelize as an ORM. The environment has been containerized with Docker for development and deployment.
 
 This repo is consolidated for ease of getting started, but the `frontend` and `api` portions should be broken down into seperate repos to keep teams able to work independently.
