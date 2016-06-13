@@ -1,9 +1,10 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as actions from 'redux/modules/notifications';
 import Message from './components/Message';
 import styles from './Notifications.less';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { autobind } from 'core-decorators';
 
 @connect(
   state => ({ notifications: state.notifications }),
@@ -25,6 +26,7 @@ export default class Notifications extends Component {
     position: 'tr',
   };
 
+  @autobind
   handleDestroy(id) {
     this.props.destroyMessage(id);
   }
@@ -32,14 +34,15 @@ export default class Notifications extends Component {
   renderMessages() {
     const messages = [];
     if (this.props.notifications.size > 0) {
-      this.props.notifications.reverse().forEach((message, id) => {
+      this.props.notifications.forEach((message, id) => {
         messages.push(
           <Message
             key={id}
+            messageKey={id}
             type={message.get('msgType')}
             text={message.get('msgText')}
             destroyAfter={3800}
-            onDestroy={this.handleDestroy.bind(this, id)} />
+            onDestroy={this.handleDestroy} />
         );
       });
     }

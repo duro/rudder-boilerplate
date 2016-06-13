@@ -45,13 +45,16 @@ export function destroyMessage(id) {
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
 
-    case actionTypes.MESSAGE_ADD:
+    case actionTypes.MESSAGE_ADD: {
       return state.set(action.id, Immutable.Map(action.message));
+    }
 
-    case actionTypes.MESSAGE_DESTROY:
+    case actionTypes.MESSAGE_DESTROY: {
       return state.delete(action.id);
+    }
 
-    default:
+    default: {
       return state;
+    }
   }
 }

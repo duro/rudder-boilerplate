@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import LogoutButton from './LogoutButton';
 import styles from './Toolbar.less';

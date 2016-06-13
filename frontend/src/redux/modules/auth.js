@@ -67,14 +67,12 @@ export function fetchUser() {
         actionTypes.USER_FETCH_COMPLETE,
         actionTypes.USER_FETCH_ERROR
       ],
-      promise: (client) => {
-        return client.get(`/user/me`, {
-          headers: {
-            'Accept': 'application/json',
-            'Authorization': token
-          }
-        });
-      }
+      promise: (client) => client.get('/user/me', {
+        headers: {
+          Accept: 'application/json',
+          Authorization: token
+        }
+      })
     });
   };
 }
@@ -143,13 +141,13 @@ export function redirectLoggedInUser() {
 export default (cookie) => {
   const cookiedInitialState = initialState.merge({
     token: cookie.get('token'),
-    isLoggedIn: (cookie.get('token')) ? true : false
+    isLoggedIn: !!cookie.get('token')
   });
 
   return function reducer(state = cookiedInitialState, action = {}) {
     switch (action.type) {
 
-      case actionTypes.USER_LOGIN_COMPLETE:
+      case actionTypes.USER_LOGIN_COMPLETE: {
         const { result } = action;
         cookie.set('token', result.token, { path: '/', maxage: 1000 * 60 * 60 * 24 });
         return state.merge({
@@ -160,8 +158,9 @@ export default (cookie) => {
           isError: false,
           isUnauthorized: false
         });
+      }
 
-      case actionTypes.USER_LOGIN_UNAUTHORIZED:
+      case actionTypes.USER_LOGIN_UNAUTHORIZED: {
         cookie.remove('token', { path: '/' });
         return state.merge({
           user: {},
@@ -173,8 +172,9 @@ export default (cookie) => {
           redirectOnLogin: false,
           redirect: undefined
         });
+      }
 
-      case actionTypes.USER_LOGIN_ERROR:
+      case actionTypes.USER_LOGIN_ERROR: {
         cookie.remove('token', { path: '/' });
         return state.merge({
           user: {},
@@ -186,13 +186,15 @@ export default (cookie) => {
           redirectOnLogin: false,
           redirect: undefined
         });
+      }
 
-      case actionTypes.USER_FETCH_COMPLETE:
+      case actionTypes.USER_FETCH_COMPLETE: {
         return state.merge({
           user: action.result
         });
+      }
 
-      case actionTypes.USER_LOGOUT:
+      case actionTypes.USER_LOGOUT: {
         cookie.remove('token', { path: '/' });
         return state.merge({
           user: {},
@@ -204,8 +206,9 @@ export default (cookie) => {
           redirectOnLogin: false,
           redirect: undefined
         });
+      }
 
-      case actionTypes.USER_FORCE_LOGIN:
+      case actionTypes.USER_FORCE_LOGIN: {
         cookie.remove('token', { path: '/' });
         return state.merge({
           user: {},
@@ -217,8 +220,9 @@ export default (cookie) => {
           redirectOnLogin: false,
           redirect: undefined
         });
+      }
 
-      case actionTypes.USER_FORCE_LOGIN_WITH_REDIRECT:
+      case actionTypes.USER_FORCE_LOGIN_WITH_REDIRECT: {
         cookie.remove('token', { path: '/' });
         return state.merge({
           user: {},
@@ -233,15 +237,18 @@ export default (cookie) => {
             query: action.query
           }
         });
+      }
 
-      case actionTypes.USER_CLEAR_REDIRECT:
+      case actionTypes.USER_CLEAR_REDIRECT: {
         return state.merge({
           redirectOnLogin: false,
           redirect: undefined
         });
+      }
 
-      default:
+      default: {
         return state;
+      }
     }
   };
 };

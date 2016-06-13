@@ -8,7 +8,7 @@ import ReactDOM from 'react-dom';
 import createStore from './redux/create';
 import ApiClient from './helpers/ApiClient';
 // import io from 'socket.io-client';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import { Router, browserHistory, applyRouterMiddleware } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { ReduxAsyncConnect } from 'redux-connect';
@@ -46,12 +46,13 @@ const component = (
     render={(props) =>
       <ReduxAsyncConnect
         {...props}
-        helpers={{client}}
+        helpers={{ client }}
         filter={item => !item.deferred}
         render={applyRouterMiddleware(useScroll())}
       />
-    }>
-      { getRoutes(store) }
+    }
+  >
+    { getRoutes(store) }
   </Router>
 );
 

@@ -33,10 +33,12 @@ export function toggleSidebar() {
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
 
-    case actionTypes.SIDEBAR_TOGGLE:
+    case actionTypes.SIDEBAR_TOGGLE: {
       return state.set('sidebarToggled', !state.get('sidebarToggled'));
+    }
 
-    default:
+    default: {
       return state;
+    }
   }
 }

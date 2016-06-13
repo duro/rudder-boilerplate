@@ -1,12 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { loginUser, redirectLoggedInUser } from 'redux/modules/auth';
+import { autobind } from 'core-decorators';
 import LoginForm from './forms/LoginForm';
 import styles from './Login.less';
 import Helmet from 'react-helmet';
 
 @connect(
-  state => ({auth: state.auth}),
+  state => ({ auth: state.auth }),
   { loginUser, redirectLoggedInUser }
 )
 export default class Login extends Component {
@@ -23,6 +24,7 @@ export default class Login extends Component {
     }
   }
 
+  @autobind
   handleSubmit(formData) {
     this.props.loginUser(formData.email, formData.password);
   }
@@ -63,7 +65,7 @@ export default class Login extends Component {
         <div className={styles.loginModule}>
           <h1>Login</h1>
           {errors}
-          <LoginForm onSubmit={this.handleSubmit.bind(this)} />
+          <LoginForm onSubmit={this.handleSubmit} />
         </div>
       </div>
     );

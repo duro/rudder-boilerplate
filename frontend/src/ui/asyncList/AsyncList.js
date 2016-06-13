@@ -1,19 +1,21 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
 import { loadList, isLoaded } from 'redux/modules/asyncList';
 import { asyncConnect } from 'redux-connect';
 
-@asyncConnect([{
-  promise: ({store: {dispatch, getState}}) => {
-    if (!isLoaded(getState())) {
-      return dispatch(loadList());
+@asyncConnect(
+  [{
+    key: 'listItems',
+    promise: store => {
+      const { dispatch, getState } = store;
+      const globalState = getState();
+      if (!isLoaded(globalState)) {
+        return dispatch(loadList());
+      }
+
+      return globalState.asyncList.get('listItems');
     }
-  }
-}])
-@connect(
-  state => ({
-    listItems: state.asyncList.get('listItems')
-  }),
+  }],
+  null,
   { loadList, isLoaded }
 )
 export default class AsyncList extends Component {
@@ -22,13 +24,6 @@ export default class AsyncList extends Component {
     listItems: PropTypes.object
   }
 
-  // static reduxAsyncConnect(params, store) {
-  //   const {dispatch, getState} = store;
-  //   if (!isLoaded(getState())) {
-  //     return dispatch(loadList());
-  //   }
-  // }
-
   render() {
     const { listItems } = this.props;
 
@@ -36,7 +31,7 @@ export default class AsyncList extends Component {
       <div>
         <h2>Async List Test</h2>
         <ul>
-          {listItems.map((item, index) => <li key={index}>{item.get('title')}</li> )}
+          {listItems.map((item, index) => <li key={index}>{item.get('title')}</li>)}
         </ul>
       </div>
     );

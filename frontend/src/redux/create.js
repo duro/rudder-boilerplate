@@ -28,11 +28,11 @@ export default function createStore(history, client, cookie, data) {
   // Convert our rehydrated data to Immutable data unless
   // it is in the exlusion list
   if (data) {
-    for (const key in data) {
+    Object.keys(data).forEach(key => {
       if (isImmutable(key)) {
-        data[key] = Immutable.fromJS(data[key]);
+        Object.assign(data, { [key]: Immutable.fromJS(data[key]) });
       }
-    }
+    });
   }
 
   const reducer = createReducers(cookie);

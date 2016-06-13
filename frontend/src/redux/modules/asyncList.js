@@ -24,17 +24,14 @@ export const actionTypes = {
  */
 
 export function loadList() {
-  return (dispatch) => {
-    // const token = getState().auth.get('token');
-    return dispatch({
-      types: [
-        actionTypes.ASYNC_LIST_LOAD_REQUEST,
-        actionTypes.ASYNC_LIST_LOAD_SUCCESS,
-        actionTypes.ASYNC_LIST_LOAD_ERROR
-      ],
-      promise: (client) => client.get('/test')
-    });
-  };
+  return (dispatch) => dispatch({
+    types: [
+      actionTypes.ASYNC_LIST_LOAD_REQUEST,
+      actionTypes.ASYNC_LIST_LOAD_SUCCESS,
+      actionTypes.ASYNC_LIST_LOAD_ERROR
+    ],
+    promise: (client) => client.get('/test')
+  });
 }
 
 export function isLoaded(globalState) {
@@ -48,13 +45,15 @@ export function isLoaded(globalState) {
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
 
-    case actionTypes.ASYNC_LIST_LOAD_SUCCESS:
+    case actionTypes.ASYNC_LIST_LOAD_SUCCESS: {
       return state.merge({
         loaded: true,
         listItems: action.result
       });
+    }
 
-    default:
+    default: {
       return state;
+    }
   }
 }

@@ -1,39 +1,58 @@
-{ "extends": "eslint-config-airbnb",
-  "env": {
-    "browser": true,
-    "node": true,
-    "mocha": true
-  },
-  "rules": {
-    "react/no-multi-comp": 0,
-    "import/default": 0,
-    "import/no-duplicates": 0,
-    "import/named": 0,
-    "import/namespace": 0,
-    "import/no-unresolved": 0,
-    "import/no-named-as-default": 2,
-    "comma-dangle": 0,  // not sure why airbnb turned this on. gross!
-    "indent": [2, 2, {"SwitchCase": 1}],
-    "no-console": 0,
-    "no-alert": 0,
-    "new-cap": 0,
-  },
-  "plugins": [
-    "react", "import"
-  ],
-  "settings": {
-    "import/parser": "babel-eslint",
-    "import/resolve": {
-      moduleDirectory: ["node_modules", "src"]
-    }
-  },
-  "globals": {
-    "__DEVELOPMENT__": true,
-    "__CLIENT__": true,
-    "__SERVER__": true,
-    "__DISABLE_SSR__": true,
-    "__DEVTOOLS__": true,
-    "socket": true,
-    "webpackIsomorphicTools": true
-  }
-}
+extends: eslint-config-airbnb
+parser: babel-eslint
+
+env:
+  browser: true
+  node: true
+  mocha: true
+
+rules:
+  react/no-multi-comp: off
+  import/default: off
+  import/no-duplicates: off
+  import/named: off
+  import/namespace: off
+  import/no-unresolved: off
+  import/no-named-as-default: error
+  no-confusing-arrow: off
+  no-underscore-dangle: off
+  react/jsx-curly-spacing: off
+  react/jsx-closing-bracket-location: off
+  react/prefer-stateless-function: off
+  react/jsx-indent: off
+  max-len: off
+  global-require: off
+  comma-dangle: off
+  indent:
+    - error
+    - 2
+    - SwitchCase: 1
+  no-console: off
+  no-alert: off
+  new-cap: off
+
+plugins:
+  - react
+  - import
+
+parserOptions:
+  ecmaFeatures:
+    experimentalObjectRestSpread: true
+
+settings:
+  import/parser: babel-eslint
+  import/ignore:
+     - \.(scss|less|css|jpg|gif|svg)$
+  import/resolve:
+    moduleDirectory:
+      - node_modules
+      - src
+
+globals:
+  __DEVELOPMENT__: true,
+  __CLIENT__: true,
+  __SERVER__: true,
+  __DISABLE_SSR__: true,
+  __DEVTOOLS__: true,
+  socket: true,
+  webpackIsomorphicTools: true

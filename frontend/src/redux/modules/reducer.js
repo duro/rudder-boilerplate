@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import {reducer as reduxAsyncConnect} from 'redux-connect';
-import {reducer as form} from 'redux-form';
+import { reducer as reduxAsyncConnect } from 'redux-connect';
+import { reducer as form } from 'redux-form';
 import authReducer from './auth';
 import layout from './layout';
 import notifications from './notifications';

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import styles from './SiteLogo.less';
 
 export default class SiteLogo extends Component {

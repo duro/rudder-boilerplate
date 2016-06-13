@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import MainNavItem from './MainNavItem';
 import styles from './MainNav.less';
 

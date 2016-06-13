@@ -7,6 +7,7 @@ import SiteLogo from './components/SiteLogo';
 import MainNav from './components/MainNav';
 import Toolbar from './components/Toolbar';
 import { Notifications } from 'ui/notifications';
+import { autobind } from 'core-decorators';
 import styles from './AppLayout.less';
 import cx from 'classnames';
 
@@ -27,11 +28,13 @@ export default class AppLayout extends Component {
     children: PropTypes.object
   }
 
+  @autobind
   handleLogout(event) {
     event.preventDefault();
     this.props.logoutUser();
   }
 
+  @autobind
   handleToggle() {
     this.props.toggleSidebar();
   }
@@ -56,8 +59,8 @@ export default class AppLayout extends Component {
               <Grid fluid>
                 <Toolbar
                   auth={this.props.auth}
-                  onLogout={this.handleLogout.bind(this)}
-                  onToggle={this.handleToggle.bind(this)}
+                  onLogout={this.handleLogout}
+                  onToggle={this.handleToggle}
                 />
                 <Row>
                   <Col xs={12}>
