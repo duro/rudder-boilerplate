@@ -21,8 +21,10 @@ export default class LoginRequired extends Component {
 
   componentWillMount() {
     if (!this.props.auth.get('isLoggedIn')) {
-      const { routing: { location } } = this.props;
-      this.props.forceLoginWithRedirect(location.pathname, location.query);
+      const {
+        routing: { locationBeforeTransitions: { pathname, query } }
+      } = this.props;
+      this.props.forceLoginWithRedirect(pathname, query);
     } else if (__CLIENT__ && this.props.auth.get('user').size === 0) {
       this.props.fetchUser();
     }
