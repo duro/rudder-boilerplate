@@ -35,7 +35,7 @@
     "good-console": "^6.1.2",
     "good-squeeze": "^3.0.1",
     "hapi": "^13.0.0",
-    "hapi-auth-jwt2": "^5.3.0",
+    "hapi-auth-jwt2": "^7.0.1",
     "hapi-sequelize": "^2.2.0",
     "hapi-swagger": "^6.0.0",
     "hoek": "^4.0.1",
