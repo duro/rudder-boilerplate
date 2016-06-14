@@ -32,7 +32,7 @@ const config = {
 
   api: {
     swagger: {
-      host: `${process.env.EXTERNAL_HOST}:${process.env.EXTERNAL_PORT}`,
+      // host: `${process.env.EXTERNAL_HOST}:${process.env.EXTERNAL_PORT}`,
       info: {
         title: 'Rudder API',
         description: 'The official API for the Rudder platform.',
