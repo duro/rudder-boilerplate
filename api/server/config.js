@@ -26,13 +26,13 @@ const config = {
   },
 
   connection : {
-    port : '8011',
+    port : process.env.EXTERNAL_PORT,
     host : '0.0.0.0'
   },
 
   api: {
     swagger: {
-      host: 'docker.internal:8011',
+      host: `${process.env.EXTERNAL_HOST}:${process.env.EXTERNAL_PORT}`,
       info: {
         title: 'Rudder API',
         description: 'The official API for the Rudder platform.',
@@ -51,14 +51,23 @@ const config = {
   },
 
   logging : {
-    opsInterval: 1000,
+    ops: {
+      interval: 1000
+    },
     reporters: {
       $filter: 'env',
-      test: [],
-      $default: [{
-        reporter: require('good-console'),
-        events: { log: '*', response: '*' }
-      }]
+      test: {},
+      $default: {
+        console: [{
+            module: 'good-squeeze',
+            name: 'Squeeze',
+            args: [{ log: '*', response: '*' }]
+          }, {
+            module: 'good-console'
+          },
+          'stdout'
+        ]
+      }
     }
   },
 
@@ -69,8 +78,8 @@ const config = {
   },
 
   media: {
-    bucket: 'rudder-dev',
-    prefix: 'media'
+    bucket: '',
+    prefix: ''
   },
 
   db: {

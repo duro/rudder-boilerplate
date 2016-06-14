@@ -63,7 +63,7 @@ lab.experiment("User", () => {
 
       expect(response.statusCode).to.equal(400);
       expect(payload.errors).to.exist();
-      expect(payload.errors).to.deep.include([{ path: 'email' }])
+      expect(payload.errors).to.include([{ path: 'email' }]);
 
       done();
     });
